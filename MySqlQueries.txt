@@ -1,0 +1,278 @@
+Enter password: ****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2 to server version: 4.1.22-community-nt
+
+Type 'help;' or '\h' for help. Type '\c' to clear the buffer.
+
+mysql> show databases;
++----------+
+| Database |
++----------+
+| mysql    |
+| test     |
++----------+
+2 rows in set (0.00 sec)
+
+mysql> create database BidvestBank;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> use BidvestBank;
+Database changed
+mysql> create table BankBranch(
+    -> Branch_name varchar(20) not null primary key,
+    -> Branch_city varchar(20) not null,
+    -> Assets double not null
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> create table Customer(
+    -> Customer_name varchar(20) not null,
+    -> Customer_street varchar(20) not null primary key,
+    -> Customer_city varchar(20) not null
+    -> );
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> create table CustomerAccount(
+    -> Acc_number varchar(8) not null primary key,
+    -> Branch_name varchar(20) not null,
+    -> Balance double
+    -> );
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> create table Loan(
+    -> Loan_number varchar(5) not null primary key,
+    -> Branch_name varchar(20) not null,
+    -> Amount double not null
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Depositor(
+    -> Customer_name varchar(20) not null,
+    -> Acc_number varchar(8) not null primary key
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Borrower(
+    -> Customer_name varchar(20) not null,
+    -> Loan_number varchar(8) not null primary key
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> create table Employee(
+    -> Employee_name varchar(20) not null primary key,
+    -> Branch_name varchar(20) not null,
+    -> Salary double not null
+    -> );
+Query OK, 0 rows affected (0.08 sec)
+
+mysql>
+
+mysql> use bidvestbank;
+Database changed
+mysql> insert into Loan
+    -> values
+    -> ('L-11','Mamelodi',900),
+    -> ('L-14','Newtown',1500),
+    -> ('L-15','Sunnyside',1500),
+    -> ('L-16','Sunnyside',13000,
+    -> ('L-17','Newtown',1000),
+    -> (''
+    -> );
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 9
+mysql> ('L-23','Universitas',2000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''L-23','Universitas',2000)' at line 1
+mysql> insert into Loan
+    -> values
+    -> ('L-11','Mamelodi',900),
+    -> ('L-14','Newtown',1500),
+    -> ('L-15','Sunnyside',1500),
+    -> ('L-16','Sunnyside',13000,
+    -> ('L-17','Newtown',1000);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 7
+mysql> insert into Loan
+    -> values
+    -> ('L-11','Mamelodi',900),
+    -> ('L-14','Newtown',1500),
+    -> ('L-15','Sunnyside',1500),
+    -> ('L-16','Sunnyside',1300),
+    -> ('L-17','Newtown',1000);
+Query OK, 5 rows affected (0.05 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> insert into Employees
+    -> values
+    -> ('Modise','Sunnyside',1500),
+    -> ('Brown','Sunnyside',1300),
+    -> ('Gopal','Sunnyside',5300),
+    -> ('Johnson','Newtown',1500),
+    -> ('Loreena','Newtown',1300),
+    -> ('Peterson','Newtown',2500),
+    -> ('Rao','Austin',1500),
+    -> ('Sato','Austin',1600);
+ERROR 1146 (42S02): Table 'bidvestbank.employees' doesn't exist
+mysql> insert into Employee
+    -> values
+    -> ('Modise','Sunnyside',1500),
+    -> ('Brown','Sunnyside',1300),
+    -> ('Gopal','Sunnyside',5300),
+    -> ('Johnson','Newtown',1500),
+    -> ('Loreena','Newtown',1300),
+    -> ('Peterson','Newtown',2500),
+    -> ('Rao','Austin',1500),
+    -> ('Sato','Austin',1600);
+Query OK, 8 rows affected (0.06 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> insert into table Borrower
+    -> values
+    -> ('Modise','L-16'),
+    -> ('Jooste','L-93'),
+    -> ('Johnson','L-15'),
+    -> ('Zwane','L-17'),
+    -> ('Jackson','L-14'),
+    -> ('Williams','L-17');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table Borrower
+values
+('Modise','L-16'),
+('Jooste','L-93'),
+('Johnson','L-15'),
+' at line 1
+mysql> insert into Borrower
+    -> values
+    -> ('Modise','L-16'),
+    -> ('Jooste','L-93'),
+    -> ('Johnson','L-15'),
+    -> ('Zwane','L-17'),
+    -> ('Jackson','L-14'),
+    -> ('Williams','L-17');
+ERROR 1062 (23000): Duplicate entry 'L-17' for key 1
+mysql> insert into Borrower
+    -> values
+    -> ('Modise','L-16'),
+    -> ('Jooste','L-93'),
+    -> ('Johnson','L-15'),
+    -> ('Zwane','L-17'),
+    -> (
+    -> ('Williams','L-17');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 8
+mysql> insert into Borrower
+    -> values
+    -> ('Modise','L-16'),
+    -> ('Jooste','L-93'),
+    -> ('Johnson','L-15'),
+    -> ('Zwane','L-17'),
+    -> ('Jackson','L-14'),
+    -> ('Smith','L-23');
+Query OK, 6 rows affected (0.03 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+mysql> insert into CustomerAccount
+    -> values
+    -> ('A-5324','Newtown',500),
+    -> ('A-5624','Sunnyside',400),
+    -> ('A-7794','Midrand',900),
+    -> ('A-4467','Mabopane',700),
+    -> ('A-3546','Midrand',750),
+    -> ('A-3453','Univestas',700),
+    -> ('A-2542','Mamelodi',350);
+Query OK, 7 rows affected (0.06 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> select * from CustomerAccount where Balance <= 700;
++------------+-------------+---------+
+| Acc_number | Branch_name | Balance |
++------------+-------------+---------+
+| A-2542     | Mamelodi    |     350 |
+| A-3453     | Univestas   |     700 |
+| A-4467     | Mabopane    |     700 |
+| A-5324     | Newtown     |     500 |
+| A-5624     | Sunnyside   |     400 |
++------------+-------------+---------+
+5 rows in set (0.06 sec)
+
+mysql> select * from Customer where Customer_city == Johannesburg;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '== Johannesburg' at line 1
+mysql> select * from Customer where Customer_city = Johannesburg;
+ERROR 1054 (42S22): Unknown column 'Johannesburg' in 'where clause'
+mysql> select * from Customer where Customer_city like '%Johannesburg%';
++---------------+-----------------+---------------+
+| Customer_name | Customer_street | Customer_city |
++---------------+-----------------+---------------+
+| Brooks        | Senator         | Johannesburg  |
++---------------+-----------------+---------------+
+1 row in set (0.03 sec)
+
+mysql> select * from Employee where Salary >1500 && where Branch_name Not like '%Newtown%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where Branch_name Not like '%Newtown%'' at line 1
+mysql> select * from Employee where Salary >1500 && Branch_name like '%Newtown%';
++---------------+-------------+--------+
+| Employee_name | Branch_name | Salary |
++---------------+-------------+--------+
+| Peterson      | Newtown     |   2500 |
++---------------+-------------+--------+
+1 row in set (0.02 sec)
+
+mysql> select Avg(Salary) From Employee;
++-------------+
+| Avg(Salary) |
++-------------+
+|      2062.5 |
++-------------+
+1 row in set (0.07 sec)
+mysql> select Empoyee_name From Employee where Branch_name like '%Sunnyside%';
+ERROR 1054 (42S22): Unknown column 'Empoyee_name' in 'field list'
+mysql> select Employee_name From Employee where Branch_name like '%Sunnyside%';
++---------------+
+| Employee_name |
++---------------+
+| Brown         |
+| Gopal         |
+| Modise        |
++---------------+
+3 rows in set (0.00 sec)
+
+mysql> select * From Borrower;
++---------------+-------------+
+| Customer_name | Loan_number |
++---------------+-------------+
+| Jackson       | L-14        |
+| Johnson       | L-15        |
+| Modise        | L-16        |
+| Zwane         | L-17        |
+| Smith         | L-23        |
+| Jooste        | L-93        |
++---------------+-------------+
+6 rows in set (0.00 sec)
+
+mysql> select Acc_number From CustomerAccount where Balance >900;
+Empty set (0.00 sec)
+
+mysql> select Branch_name && Assets From CustomerAccount;
+ERROR 1054 (42S22): Unknown column 'Assets' in 'field list'
+mysql> select Branch_name && Assets From BankBranch;
++-----------------------+
+| Branch_name && Assets |
++-----------------------+
+|                     0 |
+|                     0 |
++-----------------------+
+2 rows in set (0.06 sec)
+
+mysql> select * Branch_name && Assets From BankBranch;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'Branch_name && Assets From BankBranch' at line 1
+mysql> select  Branch_name && Assets From BankBranch;
++-----------------------+
+| Branch_name && Assets |
++-----------------------+
+|                     0 |
+|                     0 |
++-----------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from CustomerAccount where Balance >600 && Branch_name '%Newtown%';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''%Newtown%'' at line 1
+mysql> select * from CustomerAccount where Balance >600 && Branch_name like '%Newtown%';
+Empty set (0.00 sec)
+
+mysql>
+
